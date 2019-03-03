@@ -112,7 +112,8 @@
 					<th>User</th>
 					<th>Type</th>
 					<th>Details</th>
-				</tr>
+          <th>Language</th>
+        </tr>
 				<tr ng-repeat="item in vm.events"  ng-class="{even: $even, odd: $odd}">
 					<td ng-bind="item.TimeStamp | date:'h:mm ss a MMM, dd yyyy'"></td>
 					<td ng-bind="item.User"></td>
@@ -128,8 +129,9 @@
 							<div ng-if="item.Database" class="aldetailpane">{{item.Database}}</div>
 							<h5 ng-if="item.Note" class="aldetailheading">Note</h5>
 							<div ng-if="item.Note" ng-bind-html="item.Note | sanitize"></div>
-						</div>
+            </div>
 					</td>
+            <td ng-bind="item.Language"></td>
 					<td>
 						<a ng-if="item.Id" href="/sitecore/shell/Applications/Content%20Editor.aspx?sc_content=master&fo={{item.Id}}" class="btn fancybox fancybox.iframe">Edit Item</a>
 					</td>

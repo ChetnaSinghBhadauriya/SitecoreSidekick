@@ -23,8 +23,9 @@ namespace ScsAuditLog.Model
 		public string Note { get; set; }
 		public string Label { get; set; }
 		public string Color { get; set; }
+        public string Language { get; set; }
 
-		public BasicAuditEntry(Document doc, int luceneId)
+        public BasicAuditEntry(Document doc, int luceneId)
 		{
 			User = doc.Get("user");
 			Role = doc.GetValues("role").ToList();
@@ -39,6 +40,7 @@ namespace ScsAuditLog.Model
 			Color = doc.Get("color");
 			Database = doc.Get("database");
 			Uid = luceneId.ToString();
-		}
-	}
+            Language = doc.Get("language");
+        }
+    }
 }

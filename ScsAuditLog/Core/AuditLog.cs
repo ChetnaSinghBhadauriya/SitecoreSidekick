@@ -172,7 +172,8 @@ namespace ScsAuditLog.Core
 			AddField(doc, "event", entry.EventId, Field.Index.ANALYZED);
 			if (!string.IsNullOrWhiteSpace(content))
 				AddField(doc, "content", content, Field.Index.ANALYZED);
-			writeQueue.Enqueue(doc);
+            AddField(doc, "language", entry.Language, Field.Index.ANALYZED);
+            writeQueue.Enqueue(doc);
 			KickOptimizeTimer();
 		}
 

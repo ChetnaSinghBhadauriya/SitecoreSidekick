@@ -25,18 +25,19 @@ namespace ScsAuditLog.Pipelines.Publish
 				string statistics = $"<table><th>Type</th><th>Items Processed</th>{sb}</table>";
 				string publishInfo =
 					$"<table><th>Source</th><th>Target</th><tr><td>{context.PublishOptions.SourceDatabase.Name}</td><td>{context.PublishOptions.TargetDatabase.Name}</td></tr></table>";
-				if (context.PublishOptions.RootItem != null)
-					AuditLogger.Current.Log(context.PublishOptions.RootItem, "5", $"{publishInfo}{statistics}");
-				else
-					AuditLogger.Current.Log(new ItemAuditEntry("5", "", "" )
-					{
-						Database = context.PublishOptions.SourceDatabase.Name,
-						Note = $"{publishInfo}{statistics}",
-						User = context.User.Name,
-						Role = context.User.Roles.Select(x => x.Name).ToList(),
-						Id = ID.Null,
-						TimeStamp = DateTime.Now,
-						Path = context.PublishOptions.RootItem != null ? context.PublishOptions.RootItem.Paths.FullPath : "full site"
+                if (context.PublishOptions.RootItem != null)
+                    AuditLogger.Current.Log(context.PublishOptions.RootItem, "5", $"{publishInfo}{statistics}");
+                else
+                    AuditLogger.Current.Log(new ItemAuditEntry("5", "", "")
+                    {
+                        Database = context.PublishOptions.SourceDatabase.Name,
+                        Note = $"{publishInfo}{statistics}",
+                        User = context.User.Name,
+                        Role = context.User.Roles.Select(x => x.Name).ToList(),
+                        Id = ID.Null,
+                        TimeStamp = DateTime.Now,
+                        Path = context.PublishOptions.RootItem != null ? context.PublishOptions.RootItem.Paths.FullPath : "full site",
+                        Language = context.PublishOptions.Language.Name
 					});
 			}
 			catch (Exception ex)

@@ -26,8 +26,9 @@ namespace ScsAuditLog.Model
 		public List<string> Tokens { get; set; }
 		public string Label { get; set; }
 		public string Color { get; set; }
+        public string Language { get; set; }
 
-		public ItemAuditEntry()
+        public ItemAuditEntry()
 		{
 		}
 
@@ -53,8 +54,9 @@ namespace ScsAuditLog.Model
 			TimeStamp = DateTime.Now;
 			Label = label;
 			Color = color;
-		}
-		public void FromLine(string line)
+            Language = item.Language.Name;
+        }
+        public void FromLine(string line)
 		{
 			try
 			{
@@ -78,8 +80,10 @@ namespace ScsAuditLog.Model
 					Path = entries[7];
 				if (entries.Length > 8)
 					Database = entries[8];
-			}
-			catch (Exception e)
+                if (entries.Length > 9)
+                    Language = entries[9];
+            }
+            catch (Exception e)
 			{
 				Log.Error("Problem reading entry from string\n" + line, e, this);
 			}
@@ -100,9 +104,11 @@ namespace ScsAuditLog.Model
 				sb.Append(Id.ToShortID()).Append("|");
 				sb.Append(Note).Append("|");
 				sb.Append(Path).Append("|");
-				sb.Append(Database);
-			}
-			catch (Exception e)
+                sb.Append(Database).Append("|");
+                sb.Append(Language);
+
+            }
+            catch (Exception e)
 			{
 				Log.Error("problem collapsing entry", e, this);
 			}
