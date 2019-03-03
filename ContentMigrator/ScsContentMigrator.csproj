@@ -130,10 +130,4 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="AfterBuild">
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\inetpub\wwwroot\Spectrum\Source\Spectrum.Web\bin" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\inetpub\wwwroot\Debut\Source\Debut.Web\bin" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\inetpub\wwwroot\APGit\Source\AirProducts.Web\bin" />
-    <Copy SourceFiles="C:\Development\Sitecore Sidekick\packages\Lucene.Net.3.0.3\lib\net40\Lucene.Net.dll" DestinationFolder="C:\inetpub\wwwroot\Debut\Source\Debut.Web\bin" />
-  </Target>
 </Project>
